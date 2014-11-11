@@ -1,0 +1,14 @@
+printer:
+provide user prompts
+get user input
+respond to user input (exit, play, instructions)
+output white/black
+
+checker:
+compare user input to secret sequence
+
+code:
+create secret sequence (4 colors)
+
+guess:
+check user guesses for valid input
