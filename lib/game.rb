@@ -1,18 +1,19 @@
-require_relative 'printer'
 require_relative 'code'
 require_relative 'guess'
 
 
 class Game
 
-attr_reader :solution, :timer, :elapsed_min, :elapsed_sec
+attr_reader :solution, :timer, :elapsed_min, :elapsed_sec, :printer, :instream, :outstream
 
-  def initialize
+  def initialize(instream, outstream, printer)
     code = Code.new
     @solution = code.create_code
     @guess_count = 1
     @start_time = Time.now
-    @printer = Printer.new
+    @printer = printer
+    @outstream = outstream
+    @instream = instream
   end
 
   def timer
@@ -23,44 +24,45 @@ attr_reader :solution, :timer, :elapsed_min, :elapsed_sec
 
   def add_to_guess_count
     if @guess_count == 1
-      @printer.first_guess
+      outstream.puts printer.first_guess
     else
-      @printer.guess_count(@guess_count)
+      outstream.puts printer.guess_count(@guess_count)
     end
     @guess_count += 1
   end
 
   def play
-    printer = Printer.new
     loop do
-      printer.game_prompt
 
-      answer = gets.chomp.downcase
-      puts "the solution is #{solution}"
+      outstream.puts printer.turn_prompt
+      answer = instream.gets.chomp.downcase
+      # puts "the solution is #{solution}"
 
       if answer == 'q'
-        break
+        outstream.puts printer.quit_message
+        abort
 
       elsif answer == solution
         self.timer
-        printer.time_message(@solution, @guess_count, @elapsed_min, @elapsed_sec)
+        outstream.puts printer.time_message(@solution, @guess_count, @elapsed_min, @elapsed_sec)
         break
 
       elsif answer.length < 4
-        printer.guess_too_short
+      outstream.puts printer.guess_too_short
 
       elsif answer.length > 4
-        printer.guess_too_long
+        outstream.puts printer.guess_too_long
 
       else
         answer2 = Guess.new(answer, solution)
         if answer2.valid?
           answer2.correct_colors
           answer2.correct_placement
+          outstream.puts printer.correct_place(answer, answer2.correct_color_count, answer2.correct_color_placement)
           self.add_to_guess_count
 
         else
-          printer.guess_not_valid
+        outstream.puts printer.guess_not_valid
         end
       end
     end

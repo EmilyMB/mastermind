@@ -4,18 +4,38 @@ require 'minitest/pride'
 require_relative '../lib/guess'
 
 class GuessTest < Minitest::Test
-  # def test_lookup_by_last_name
-  #   repository = Minitest::Mock.new
-  #   phone_book = PhoneBook.new(repository)
-  #   repository.expect(:find_by_last_name, [], ["Smith"])
-  #   phone_book.lookup('Smith')
-  #   repository.verify
-  # end
-  #
-  def test_it_is_four_colors
-    user_guess = Minitest::Mock.new
-    guess = Guess.new(user_guess)
-    user_guess.expect(:valid?, [], ['b', 'q', 'd', 'f'])
-    refute, user_guess.valid?
+
+  def test_it_initializes_counts_at_zero
+    solution = "bbbb"
+    user_guess = "bqbq"
+    guess = Guess.new(user_guess, solution)
+    assert_equal guess.correct_color_count, 0
+    assert_equal guess.correct_color_placement, 0
   end
+
+
+  def test_it_rejects_invalid_letters
+    solution = "bbbb"
+    user_guess = "bqbq"
+    guess = Guess.new(user_guess, solution)
+    refute guess.valid?
+  end
+
+  def test_it_counts_correct_colors
+    solution = "bbbb"
+    user_guess = "bqbq"
+    guess = Guess.new(user_guess, solution)
+    guess.correct_colors
+    assert guess.correct_color_count, 2
+  end
+
+  def test_it_counts_correct_placement
+    solution = "bbrb"
+    user_guess = "bqbq"
+    guess = Guess.new(user_guess, solution)
+    guess.correct_placement
+    assert_equal guess.correct_color_placement, 1
+  end
+
+
 end
