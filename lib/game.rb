@@ -36,7 +36,6 @@ attr_reader :solution, :timer, :elapsed_min, :elapsed_sec, :printer, :instream, 
 
       outstream.puts printer.turn_prompt
       answer = instream.gets.chomp.downcase
-      # puts "the solution is #{solution}"
 
       if answer == 'q'
         outstream.puts printer.quit_message

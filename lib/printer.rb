@@ -1,20 +1,20 @@
 class Printer
 
   def welcome_message
-    "Welcome to MASTERMIND"
+    "Welcome to #{red("MASTERMIND")}"
   end
 
   def input_request
-    "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    "Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n>"
   end
 
   def game_prompt
-    "I have generated a beginner sequence with four elements made up of: (r)ed,
-(g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game."
+    "I have generated a beginner sequence with four elements made up of: #{red("(r)ed")},
+#{green("(g)reen")}, #{blue("(b)lue")}, and #{yellow("(y)ellow")}. Use (q)uit at any time to end the game."
   end
 
   def turn_prompt
-    "What's your guess? (Any combination of (r)ed, (g)reen, (b)lue, and (y)ellow)"
+    "What's your guess? (Any combination of #{red("(r)ed")}, #{green("(g)reen")}, #{blue("(b)lue")}, and #{yellow("(y)ellow")})"
   end
 
   def instructions
@@ -55,5 +55,21 @@ class Printer
 
   def quit_message
     "Now quitting...off to do something more productive."
+  end
+
+  def red(text)
+    "\033[ 0 ;#{31}m" + "#{text}" + "\033[0m"
+  end
+
+  def blue(text)
+    "\033[ 0 ;#{34}m" + "#{text}" + "\033[0m"
+  end
+
+  def yellow(text)
+    "\033[ 0 ;#{33}m" + "#{text}" + "\033[0m"
+  end
+
+  def green(text)
+    "\033[ 0 ;#{32}m" + "#{text}" + "\033[0m"
   end
 end

@@ -13,7 +13,7 @@ class CLI
 
   def call
     outstream.puts printer.welcome_message
-    outstream.puts printer.input_request
+    outstream.print printer.input_request
 
     loop do
 
@@ -27,7 +27,7 @@ class CLI
 
       when 'i'
        outstream.puts printer.instructions
-       outstream.puts printer.input_request
+       outstream.print printer.input_request
 
       when 'q'
        outstream.puts printer.quit_message
