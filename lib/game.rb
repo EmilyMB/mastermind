@@ -4,7 +4,7 @@ require_relative 'guess'
 
 class Game
 
-attr_reader :solution, :timer, :elapsed_min, :elapsed_sec, :printer, :instream, :outstream
+attr_reader :solution, :timer, :elapsed_min, :elapsed_sec, :printer, :instream, :outstream, :guess_count
 
   def initialize(instream, outstream, printer)
     code = Code.new

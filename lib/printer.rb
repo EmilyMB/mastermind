@@ -1,4 +1,3 @@
-# require_relative 'game'
 class Printer
 
   def welcome_message
