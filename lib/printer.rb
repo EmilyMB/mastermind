@@ -30,15 +30,15 @@ class Printer
   end
 
   def guess_too_long
-    "guess is too long"
+    "Your guess is too long. Please enter 4 characters."
   end
 
   def guess_too_short
-    "guess is too short"
+    "Your guess is too short. Please enter 4 characters."
   end
 
   def guess_not_valid
-    "your guess is not valid"
+    "Your guess is not valid."
   end
 
   def first_guess
