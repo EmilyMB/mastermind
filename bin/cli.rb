@@ -1,5 +1,5 @@
-require_relative '../lib/printer'
-require_relative '../lib/game'
+require 'printer'
+require 'game'
 
 class CLI
   attr_reader :answer, :printer, :instream, :outstream

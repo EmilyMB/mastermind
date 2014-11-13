@@ -1,5 +1,5 @@
-require_relative 'code'
-require_relative 'guess'
+require 'code'
+require 'guess'
 
 
 class Game

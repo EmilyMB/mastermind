@@ -1,7 +1,5 @@
-gem 'minitest', '~> 5.4'
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/guess'
+require './test/test_helper'
+require 'guess'
 
 class GuessTest < Minitest::Test
 

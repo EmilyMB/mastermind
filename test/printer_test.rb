@@ -1,7 +1,5 @@
-gem 'minitest', '~> 5.4'
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/printer'
+require './test/test_helper'
+require 'printer'
 
 class PrinterTest < Minitest::Test
 
@@ -10,20 +8,19 @@ class PrinterTest < Minitest::Test
   end
 
   def test_prints_out_welcome_message
-    assert_equal @printer.welcome_message, "Welcome to MASTERMIND"
+    assert_equal @printer.welcome_message, "Welcome to \e[ 0 ;31mMASTERMIND\e[0m"
   end
 
   def test_prints_everything_it_should
     assert_equal @printer.input_request,
-      "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+      "Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n>"
 
     assert_equal @printer.game_prompt,
-      "I have generated a beginner sequence with four elements made up of: (r)ed,
-(g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game."
-
+      "I have generated a beginner sequence with four elements made up of: \e[ 0 ;31m(r)ed\e[0m,
+\e[ 0 ;32m(g)reen\e[0m, \e[ 0 ;34m(b)lue\e[0m, and \e[ 0 ;33m(y)ellow\e[0m. Use (q)uit at any time to end the game."
 
     assert_equal @printer.turn_prompt,
-      "What's your guess? (Any combination of (r)ed, (g)reen, (b)lue, and (y)ellow)"
+      "What's your guess? (Any combination of \e[ 0 ;31m(r)ed\e[0m, \e[ 0 ;32m(g)reen\e[0m, \e[ 0 ;34m(b)lue\e[0m, and \e[ 0 ;33m(y)ellow\e[0m)"
 
 
     assert_equal @printer.instructions,
@@ -36,16 +33,16 @@ class PrinterTest < Minitest::Test
     #   "Congratulations! You guessed the sequence '#{solution.upcase}' in #{guess_count} guesses over #{minutes} minutes and #{seconds} seconds. Do you want to (p)lay again or (q)uit?"
 
 
-    assert_equal @printer.guess_too_long, "guess is too long"
+    assert_equal @printer.guess_too_long, "Your guess is too long. Please enter 4 characters."
 
 
-    assert_equal @printer.guess_too_short,  "guess is too short"
+    assert_equal @printer.guess_too_short,  "Your guess is too short. Please enter 4 characters."
 
 
-    assert_equal @printer.guess_not_valid, "your guess is not valid"
+    assert_equal @printer.guess_not_valid, "Your guess is not valid."
 
 
-    assert_equal @printer.first_guess, "You've taken 1 guess"
+    assert_equal @printer.first_guess, "You've taken 1 guess."
 
     #
     # assert_equal @printer.guess_count(guess_count),

@@ -42,11 +42,11 @@ class Printer
   end
 
   def first_guess
-    "You've taken 1 guess"
+    "You've taken 1 guess."
   end
 
   def guess_count(guess_count)
-    "You've taken #{guess_count} guesses"
+    "You've taken #{guess_count} guesses."
   end
 
   def correct_place(guess, correct_color, correct_place)

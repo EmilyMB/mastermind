@@ -1,7 +1,5 @@
-gem 'minitest', '~> 5.2'
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/game'
+require './test/test_helper'
+require 'game'
 
 
 class IntegrationTest < MiniTest::Test
@@ -21,3 +19,4 @@ class IntegrationTest < MiniTest::Test
   #   assert_equal "Mohamed Parker", e3.name
   #   assert_equal "701-655-6889", e3.phone_number
    end
+end

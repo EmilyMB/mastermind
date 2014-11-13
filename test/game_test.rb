@@ -1,7 +1,6 @@
-gem 'minitest', '~> 5.4'
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/game'
+require './test/test_helper'
+require 'game'
+
 
 class GameTest < Minitest::Test
 
